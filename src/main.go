@@ -35,7 +35,7 @@ func Controller() {
 
 				weightBox := ParseData.ParseScaleData(scaleResponse)
 
-				correctWeight := int(weightBox * 100) * 10 // TODO исправить протокол для 60 кг весов
+				correctWeight := int(weightBox)
 				
 				checkData := ParseData.CheckData(correctWeight)
 

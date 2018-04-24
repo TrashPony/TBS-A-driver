@@ -33,12 +33,12 @@ func ParseScaleData(data *TransportData.ScaleResponse) (weightBox float64) {
 
 		if data.ReadyAndDiscreteness[1] == 4 {
 			if  data.Weight[1] == 0 { // вес уместился в 1н байт
-				weightBox = float64(data.Weight[0]) * 0.01
+				weightBox = float64(data.Weight[0]) * 10
 				return
 			}
 
 			if data.Weight[1] != 0 { // не уместился
-				weightBox = ((256 * float64(data.Weight[1])) + float64(data.Weight[0])) * 0.01
+				weightBox = ((256 * float64(data.Weight[1])) + float64(data.Weight[0])) * 10
 				return
 			}
 		}
