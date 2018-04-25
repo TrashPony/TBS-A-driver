@@ -1,6 +1,8 @@
 package ParseData
 
-import 	"../TransportData"
+import (
+	"../TransportData"
+)
 
 
 func ParseScaleData(data *TransportData.ScaleResponse) (weightBox float64) {
@@ -13,6 +15,12 @@ func ParseScaleData(data *TransportData.ScaleResponse) (weightBox float64) {
 	EC             - вес в определившейся дискретности
 	00 (2я строка) - 0 это (+) 80 это (-) отрицательный , положительный вес.
 	*/
+
+	println(data.ReadyAndDiscreteness[0])
+	println(data.ReadyAndDiscreteness[1])
+	println(data.Weight[0])
+	println(data.Weight[1])
+	println("------------------------------------------------------")
 
 	if data.ReadyAndDiscreteness[0] == 128 && (data.Weight[0] !=0 || data.Weight[1] !=0) {
 
@@ -32,7 +40,8 @@ func ParseScaleData(data *TransportData.ScaleResponse) (weightBox float64) {
 		}
 
 		if data.ReadyAndDiscreteness[1] == 4 {
-			if  data.Weight[1] == 0 { // вес уместился в 1н байт
+
+			if  data.Weight[1] == 0 { // вес уместился в 1н
 				weightBox = float64(data.Weight[0]) * 10
 				return
 			}

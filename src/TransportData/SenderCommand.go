@@ -28,24 +28,3 @@ func SendScaleCommand(port *Port) (*ScaleResponse) {
 		return nil
 	}
 }
-
-func SendRulerCommand(port *Port) (*RulerResponse) {
-
-	var response RulerResponse
-	countRead := 5
-
-	// запрос ширины коробки
-	response.Width = port.SendBytes([]byte{0x88}, countRead)
-
-	// запрос высоты коробки
-	response.Height = port.SendBytes([]byte{0x99}, countRead)
-
-	// запрос длинны коробки
-	response.Length = port.SendBytes([]byte{0x77}, countRead)
-
-	if response.Width != nil && response.Height != nil && response.Length != nil {
-		return &response
-	} else {
-		return nil
-	}
-}
