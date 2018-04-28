@@ -4,6 +4,7 @@ import (
 	"./TransportData"
 	"./ParseData"
 	"./InputData"
+	"./Log"
 	"strconv"
 	"time"
 )
@@ -38,11 +39,10 @@ func Controller() {
 				correctWeight := int(weightBox)
 				
 				checkData := ParseData.CheckData(correctWeight)
-
 				if checkData {
-
 					InputData.ToClipBoard(strconv.Itoa(correctWeight))
 					InputData.ToClipBoard("_ESC_Save")
+					Log.Write(correctWeight)
 					time.Sleep(time.Second * 3)
 				}
 			}
